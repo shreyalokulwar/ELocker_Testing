@@ -1,46 +1,52 @@
-\# ELocker\_Testing
+# Eloader_Testing 🚀
 
+![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue?logo=github)
+![CI Status](https://github.com/shrejalchoular/Eloader_Testing/actions/workflows/selenium-tests.yml/badge.svg)
 
+This project automates testing for file upload/download functionality, file size validation, and dashboard interaction using Selenium and Python. It also includes a static front-end hosted via GitHub Pages.
 
-This project automates testing for file upload/download, file size validation, and dashboard functionality using Python and web technologies.
+---
 
+## 🌐 Live Demo  
+Visit the deployed site: [Eloader_Testing](https://shrejalchoular.github.io/Eloader_Testing/)
 
+---
 
-\## 📁 Folder Structure
+## 📁 Folder Structure
 
-\- `index.html`, `styles.css`, `script.js`: Frontend
+Eloader_Testing/
+├── index.html              # Static front-end
+├── styles.css              # Styling for the front-end
+├── script.js               # JavaScript logic
+├── pages/                  # Python backend modules
+├── tests/                  # Selenium test scripts
+├── chromedriver.exe        # Local testing driver (excluded from GitHub)
+├── sample.pdf              # Sample file for upload test
+├── large.pdf               # Large file for size validation
+├── .gitignore              # Excludes unnecessary files
+├── README.md               # Project documentation
 
-\- `pages/`: Python backend modules
+---
 
-\- `tests/`: Pytest test cases
+## 🚀 Features
 
-\- `chromedriver.exe`, `sample.pdf`, `large.pdf`: Test assets
+- Upload and download file testing  
+- File size validation  
+- Dashboard page automation  
 
+---
 
+## 🧪 Technologies Used
 
-\## 🚀 Features
+- **Frontend**: HTML, CSS, JavaScript  
+- **Backend Testing**: Python, Selenium, Pytest  
+- **CI/CD**: GitHub Actions  
+- **Browser Automation**: Google Chrome + ChromeDriver  
 
-\- Upload and download file testing
+---
 
-\- File size validation
+## 📦 How to Run Tests Locally
 
-\- Dashboard page automation
-
-
-
-\## 🧪 Technologies
-
-\- Python, Selenium, Pytest
-
-\- HTML, CSS, JavaScript
-
-
-
-\## 📦 How to Run
-
-1\. Install dependencies
-
-2\. Run tests with `pytest tests/`
-
-
-
+1. Install dependencies:
+   ```bash
+   pip install selenium pytest
