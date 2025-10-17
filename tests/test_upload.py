@@ -20,9 +20,8 @@ options.add_argument("--window-size=1280,800")  # Set viewport size
 user_data_dir = tempfile.mkdtemp()
 options.add_argument(f"--user-data-dir={user_data_dir}")
 
-chromedriver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/local/bin/chromedriver")
-service = Service(executable_path=chromedriver_path)
-driver = webdriver.Chrome(service=service, options=options)
+driver = webdriver.Chrome(options=options)
+
 
 # --- Step 1: Load the site ---
 driver.get("http://localhost:8000/index.html")
