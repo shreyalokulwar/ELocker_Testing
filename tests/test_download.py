@@ -1,26 +1,37 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from pages.upload_page import UploadPage
-from pages.dashboard_page import DashboardPage
+from selenium.webdriver.chrome.service import Service
+import tempfile
 import os
 import time
+from pages.upload_page import UploadPage
+from pages.dashboard_page import DashboardPage
 
 # --- Setup download directory ---
 download_dir = os.path.abspath("downloads")
 os.makedirs(download_dir, exist_ok=True)
 
-# --- Configure Chrome options ---
-chrome_options = Options()
-chrome_options.add_experimental_option("prefs", {
+# --- Configure Chrome options for CI ---
+options = Options()
+options.add_argument("--headless=new")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-gpu")
+options.add_argument("--window-size=1280,800")
+options.add_experimental_option("prefs", {
     "download.default_directory": download_dir,
     "download.prompt_for_download": False,
     "download.directory_upgrade": True,
     "safebrowsing.enabled": True
 })
 
+# ✅ Use unique user profile to avoid session conflict
+user_data_dir = tempfile.mkdtemp()
+options.add_argument(f"--user-data-dir={user_data_dir}")
+
 # --- Launch browser and open HTML ---
-driver = webdriver.Chrome(options=chrome_options)
-driver.get("file:///" + os.path.abspath("index.html"))
+driver = webdriver.Chrome(options=options)
+driver.get("http://localhost:8000/index.html")
 driver.maximize_window()
 time.sleep(2)
 
