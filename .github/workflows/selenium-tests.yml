@@ -23,24 +23,20 @@ jobs:
       run: |
         pip install selenium pytest
 
-    - name: Install Google Chrome and matching ChromeDriver
+    - name: Install Chrome v116 and ChromeDriver v116
       run: |
         sudo apt-get update
         sudo apt-get install -y wget unzip curl
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
-        # Get installed Chrome version
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
+        # Install Chrome v116
+        wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chrome-linux64.zip
+        unzip chrome-linux64.zip
+        sudo mv chrome-linux64 /opt/chrome
+        sudo ln -s /opt/chrome/chrome /usr/bin/google-chrome
 
-        # Get matching ChromeDriver download URL
-        DRIVER_JSON="https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json"
-        DRIVER_VERSION=$(curl -s $DRIVER_JSON | grep -B 1 "$CHROME_VERSION" | grep "version" | head -1 | cut -d '"' -f4)
-        DRIVER_LINK=$(curl -s $DRIVER_JSON | grep -A 20 "$DRIVER_VERSION" | grep "chromedriver-linux64.zip" | cut -d '"' -f4 | head -1)
-
-        # Download and install ChromeDriver
-        wget $DRIVER_LINK -O chromedriver.zip
-        unzip chromedriver.zip
+        # Install matching ChromeDriver v116
+        wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip
+        unzip chromedriver-linux64.zip
         sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
         sudo chmod +x /usr/bin/chromedriver
 
