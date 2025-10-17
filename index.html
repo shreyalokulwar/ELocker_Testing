@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eLocker - Student Certificate Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="#4F46E5"/>
+                    <path d="M20 10C14.477 10 10 14.477 10 20C10 25.523 14.477 30 20 30C25.523 30 30 25.523 30 20C30 14.477 25.523 10 20 10ZM20 12C24.418 12 28 15.582 28 20C28 24.418 24.418 28 20 28C15.582 28 12 24.418 12 20C12 15.582 15.582 12 20 12ZM19 15V21H25V19H21V15H19Z" fill="white"/>
+                </svg>
+                <h1>eLocker</h1>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+                <button class="nav-btn" data-page="upload">Upload</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Dashboard Page -->
+            <div id="dashboard" class="page active">
+                <div class="page-header">
+                    <h2>My Certificates</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search certificates...">
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3 id="totalCerts">0</h3>
+                        <p>Total Certificates</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="recentCerts">0</h3>
+                        <p>Added This Month</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="categories">0</h3>
+                        <p>Categories</p>
+                    </div>
+                </div>
+
+                <div id="certificateList" class="certificate-grid">
+                    <div class="empty-state">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                            <rect x="10" y="20" width="60" height="40" rx="4" stroke="#CBD5E1" stroke-width="2"/>
+                            <line x1="20" y1="35" x2="60" y2="35" stroke="#CBD5E1" stroke-width="2"/>
+                            <line x1="20" y1="45" x2="50" y2="45" stroke="#CBD5E1" stroke-width="2"/>
+                        </svg>
+                        <p>No certificates yet. Upload your first certificate to get started!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Page -->
+            <div id="upload" class="page">
+                <div class="page-header">
+                    <h2>Upload Certificate</h2>
+                </div>
+
+                <div class="upload-container">
+                    <form id="uploadForm">
+                        <div class="form-group">
+                            <label for="certName">Certificate Name</label>
+                            <input type="text" id="certName" required placeholder="Certificate Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="certCategory">Category</label>
+                            <select id="certCategory" required>
+                                <option value="">Select a category</option>
+                                <option value="Degree Certificate">Degree Certificate</option>
+                                <option value="Marksheet">Marksheet</option>
+                                <option value="Participation Cerificate">Participation Cerificate</option>
+                                <option value="Achievement Cerificate">Achievement Cerificate</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="certIssuer">Issued By</label>
+                            <input type="text" id="certIssuer" required placeholder="e.g., Coursera, University">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="certDate">Issue Date</label>
+                            <input type="date" id="certDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="certFile">Certificate File (Image/PDF)</label>
+                            <input type="file" id="certFile" accept="image/*,.pdf" required>
+                            <small>Supported formats: JPG, PNG, PDF (Max 5MB)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="certDescription">Description (Optional)</label>
+                            <textarea id="certDescription" rows="3" placeholder="Add any additional details..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Upload Certificate</button>
+                    </form>
+                </div>
+            </div>
+
+    <!-- Modal for Certificate Details -->
+    <div id="certModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
